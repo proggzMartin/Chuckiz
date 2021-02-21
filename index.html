@@ -7,12 +7,20 @@
   <title>Document</title>
 
   <script src="chuck.js" defer></script>
+  <script src="createHTMLElements.js" defer></script>
+  <script src="typeChecks.js" defer></script>
+
 
 </head>
 <body>
   <h1>Chucke Norris</h1>
 
-  <input type="button" value="Hämta citat!"" id="getQuoteButton"/>
+  <div id="categoriesDisplay">
+
+  </div>
+
+  <p id="selectedCategoryDisplay"></p>
+  <input type="button" value="Hämta citat!"" id="getJokeButton"/>
 
   <p id="quoteDisplay"></p>
 </body>
