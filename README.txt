@@ -14,5 +14,4 @@ v3: Det är dags att finpolera, städa upp i CSS, se till att sidan inte krascha
 V1 - IDÉN MED SIDAN
 
 NOT FINISHED!!!!! :
-Vi tycker om att ha kul, och vitsar är king. Jobba med något som är roligt is the way to go, tänk att få fylla upp en databas med massa blaj och bara nörda in sig samtidigt som man har roligt.
-(Eller något, oklart om vi har databas höhö)
+Vi tycker om att ha kul, och vitsar är king. Jobba med något som är roligt is the way to go, så denna site nyuttjar ett chucknorris-api för att hämta olika citat som man sedan kan välja bland kategorier kring vilket random skämt man vill hämta.
