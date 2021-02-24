@@ -1,16 +1,18 @@
 'use strict';
 
 window.onload = (event) => {
-    function mapHandler(){
-        let cords = getCord().then(res => {
-            let lat = res["lat"]
-            let lon = res["lon"]
-            updateMap(lon, lat);
-            
-        });
-    }
+    mapHandler();
+    setInterval(mapHandler, 5000);
+}
 
-    setInterval(mapHandler(), 3000);
+function mapHandler(){
+    let cords = getCord().then(res => {
+        let lat = res["lat"]
+        let lon = res["lon"]
+        updateMap(lon, lat);
+        console.log(lon, lat, "\n")
+        console.log("____________________")
+    });
 }
 
 async function getCord() {
@@ -30,17 +32,20 @@ async function getCord() {
 const map = new ol.Map({
     layers: [
         new ol.layer.Tile({
-        source: new ol.source.OSM(),
-        name: "source"
-        })
+            source: new ol.source.OSM(),
+            name: "map"
+            })
     ],
     target: "map",
     view: new ol.View({center: ol.proj.fromLonLat([0,0]), zoom: 1.5})
 });
 
-function updateMap(lon, lat){
-    let layers = map.getLayers().getArray()
-    console.log(layers)
+function updateMap(lon, lat){   
+    let lrs = map.getLayers().forEach(layer => {
+        if(layer.get("name") == "icon"){
+            map.removeLayer(layer)
+        }
+    })
     
     let issFeature = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat]), ),
@@ -62,8 +67,11 @@ function updateMap(lon, lat){
     })
 
     let iconLayer = new ol.layer.Vector({
-        source: iconLayerSource
+        source: iconLayerSource,
+        name: "icon"
     })
+
     map.addLayer(iconLayer)
+    
     
 }
