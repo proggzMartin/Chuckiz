@@ -1,5 +1,10 @@
 'use strict';
 
+
+/*
+Todo: Fixa Kommentarer & rensa i koden
+
+*/
 window.onload = (event) => {
     mapHandler();
     setInterval(mapHandler, 5000);
