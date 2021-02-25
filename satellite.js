@@ -10,31 +10,6 @@ window.onload = (event) => {
     setInterval(mapHandler, 5000);
 }
 
-//Kalla på funktionen getCords och skicka de vidare till updateMap
-function mapHandler(){
-    let cords = getCord().then(res => {
-        let lat = res["lat"]
-        let lon = res["lon"]
-        updateMap(lon, lat);
-    });
-}
-
-
-//Hämta koordinater
-async function getCord() {
-    let lat = null;
-    let lon = null;
-    let response = await fetch("https://api.wheretheiss.at/v1/satellites/25544").catch(error => console.error(error));
-    let json = await response.json();
-
-    if(json["status"] != 404){
-        lat = json["latitude"]
-        lon = json["longitude"]
-    }
-
-    return {"lat":lat, "lon":lon}
-}
-
 //Skapar kartan & en lista med lager (layers)
 const map = new ol.Map({
     layers: [
@@ -52,6 +27,31 @@ getCord().then(res => {
     let lon = res["lon"]
     map.setView(new ol.View({center: ol.proj.fromLonLat([lon, lat]), zoom: 1.5}))
 });
+
+//Hämta koordinater
+async function getCord() {
+    let lat = null;
+    let lon = null;
+    let response = await fetch("https://api.wheretheiss.at/v1/satellites/25544").catch(error => console.error(error));
+    let json = await response.json();
+
+    if(json["status"] != 404){
+        lat = json["latitude"]
+        lon = json["longitude"]
+    }
+
+    return {"lat":lat, "lon":lon}
+}
+
+//Kalla på funktionen getCords och skicka de vidare till updateMap
+function mapHandler(){
+    let cords = getCord().then(res => {
+        let lat = res["lat"]
+        let lon = res["lon"]
+        updateMap(lon, lat);
+    });
+}
+
 
 
 function findButton(lon, lat){
