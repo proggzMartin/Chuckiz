@@ -52,8 +52,7 @@ function mapHandler(){
     });
 }
 
-
-
+//Knapp för att flytta kameran till ISS
 function findButton(lon, lat){
     getCord().then(res => {
         let lat = res["lat"]
@@ -62,8 +61,8 @@ function findButton(lon, lat){
     });
 };
 
+
 function updateMap(lon, lat){   
-    //flytta kameran
 
     //Ta bort gammla ikonen
     let lrs = map.getLayers().forEach(layer => {
