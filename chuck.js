@@ -1,10 +1,7 @@
 // https://api.chucknorris.io/#!
 //Får inte till moduler, så kör det jag fick att funka.
 
-
 'use strict';
-
-
 
 let getJokeButton = document.getElementById("getJokeButton");
 
@@ -29,8 +26,57 @@ let setSelectedCategoryDisplay = function(category) {
   selectedCategoryDisplay.innerHTML = "Selected category: "+category;
   selectedCategory = category;
 }
-//... Because objects are passed as copy of reference: 
-//https://stackoverflow.com/questions/13104494/does-javascript-pass-by-reference
+
+//======================================================
+//======================================================
+//TESTCODE
+let chuckImage = document.getElementById("chuckImage");
+
+const apiBase2 = 'https://api.imgflip.com/get_memes';
+
+async function getImage() {
+  console.log("inuti bajs");
+
+  const resp = await fetch(apiBase2, 
+    {
+      method: "GET"
+    }).then(r => {
+      console.log(r);
+      r.json().then(p => {
+        console.log(p);
+        const memes = p.data.memes
+
+        if(memes[0].url)
+        {
+          console.log(memes[0].url)
+          chuckImage.src=memes[1].url;
+        }
+
+      });
+      // chuckImage.src = r.
+    });
+}
+
+getImage();
+
+
+// const xhttp3 = new XMLHttpRequest();
+// const apiBase3 = 'https://api.imgflip.com/caption_image';
+
+// xhttp3.open("POST", 
+//             apiBase2, 
+//             true,
+//             );
+
+// xhttp3.onreadystatechange = function () {
+//   let response = JSON.parse(xhttp3.response);
+//   console.log(response);
+// };
+
+// xhttp3.send();
+//======================================================
+//======================================================
+
 
 let chuck = (function() {
 
