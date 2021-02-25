@@ -43,11 +43,27 @@ const map = new ol.Map({
             name: "map"
             })
     ],
-    target: "map",
-    view: new ol.View({center: ol.proj.fromLonLat([0,0]), zoom: 1.5})
+    target: "map"
 });
 
+//Flytta kartan till ISS så fort scriptet körs igång
+getCord().then(res => {
+    let lat = res["lat"]
+    let lon = res["lon"]
+    map.setView(new ol.View({center: ol.proj.fromLonLat([lon, lat]), zoom: 1.5}))
+});
+
+
+function findButton(lon, lat){
+    getCord().then(res => {
+        let lat = res["lat"]
+        let lon = res["lon"]
+        map.setView(new ol.View({center: ol.proj.fromLonLat([lon, lat]), zoom: 1.5}))
+    });
+};
+
 function updateMap(lon, lat){   
+    //flytta kameran
 
     //Ta bort gammla ikonen
     let lrs = map.getLayers().forEach(layer => {
