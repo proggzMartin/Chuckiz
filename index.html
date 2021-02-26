@@ -35,12 +35,17 @@
             <input onclick="userCheckBox();" type="checkbox" id="issVel" name="speed"><label for="speed">Speed</label>
             <input onclick="userCheckBox();" type="checkbox" id="issAlt" name="alt"><label for="alt">Altitude</label>
         </div>
+
         <button onclick="findButton();">Return to ISS</button>
-        
+
+        <div id="map" style="height: 250px; width:450px;"></div>
+        <div id="issInfo" style="display:inline-block; margin-top:-20px;">
+          <h4 style="visibility: hidden; float:left; padding-right: 25px;" id="velText"></h4>
+          <h4 style="visibility: hidden; float:right;" id="altText"></h4>
+        </div>
     </div>
-    <div id="map" style="height: 250px; width:450px;"></div>
-    <h4 style="visibility: hidden;" id="velText"></h4>
-    <h4 style="visibility: hidden;" id="altText"></h4>
+    
+    
 
 </div>
 

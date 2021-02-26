@@ -57,12 +57,8 @@ function mapHandler(){
 
         updateMap(lon, lat);
         document.getElementById("veloText")
-        document.getElementById("altText").innerText = "Altitude: " + Math.round(alt *100)/100 + " KM"
         document.getElementById("velText").innerText = "Velocity: " + Math.round(vel *100)/100 + " km/h"
-
-        //txV.innerText = Math.round(vel *100)/100 + " km/h"
-        //
-
+        document.getElementById("altText").innerText = "Altitude: " + Math.round(alt *100)/100 + " km"
     });
 }
 
