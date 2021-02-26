@@ -11,7 +11,7 @@ window.onload = (event) => {
 }
 
 //Skapar kartan & en lista med lager (layers)
-const map = new ol.Map({
+let map = new ol.Map({
     layers: [
         new ol.layer.Tile({
             source: new ol.source.OSM(),
@@ -73,11 +73,26 @@ function findButton(lon, lat){
 
 
 function updateMap(lon, lat){   
+    let currentMapSource;
+
+    if(document.getElementById("mapimgPol").checked){
+        currentMapSource = new ol.source.OSM();
+    }else{
+        currentMapSource = new ol.source.XYZ({
+            url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        })
+    }
 
     //Ta bort gammla ikonen
     let lrs = map.getLayers().forEach(layer => {
-        if(layer.get("name") == "icon"){
+        if(layer){
+            if(layer.get("name") == "icon"){
             map.removeLayer(layer)
+            }
+            
+            if(layer.get("name") == "map"){
+                layer.setSource(currentMapSource)
+            }
         }
     })
     
@@ -91,8 +106,8 @@ function updateMap(lon, lat){
     issFeature.setStyle(new ol.style.Style({
         image: new ol.style.Icon({
             anchor: [0.5, 0.5],
-            src: "img/sat.png",
-            scale: 0.1
+            src: "img/iss.png",
+            scale: 0.2
         })
     }))
 
@@ -132,3 +147,4 @@ function userCheckBox(){
 
 
 }
+
