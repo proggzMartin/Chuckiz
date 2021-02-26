@@ -52,7 +52,17 @@ function mapHandler(){
     let cords = getCord().then(res => {
         let lat = res["lat"]
         let lon = res["lon"]
+        let alt = res["alt"]
+        let vel = res["vel"]
+
         updateMap(lon, lat);
+        document.getElementById("veloText")
+        document.getElementById("altText").innerText = "Altitude: " + Math.round(alt *100)/100 + " KM"
+        document.getElementById("velText").innerText = "Velocity: " + Math.round(vel *100)/100 + " km/h"
+
+        //txV.innerText = Math.round(vel *100)/100 + " km/h"
+        //
+
     });
 }
 
@@ -109,25 +119,20 @@ function updateMap(lon, lat){
 function userCheckBox(){
     let cbV = document.getElementById("issVel");
     let cbA = document.getElementById("issAlt");
-    let txV = document.getElementById("veloText");
+    let txV = document.getElementById("velText");
     let txA = document.getElementById("altText");
     
-    getCord().then(res => {
-        let alt = res["alt"];
-        let vel = res["vel"];
-        if(cbV.checked == true){
-            txV.style.visibility = "visible";
-            txV.innerText = Math.round(vel *100)/100 + " km/h"
-        }else{
-            txV.style.visibility = "hidden";
-        }
-    
-        if(cbA.checked == true){
-            txA.style.visibility = "visible";
-            txA.innerText = Math.round(alt *100)/100 + " KM"
-        }else{
-            txA.style.visibility = "hidden";
-        }
-    });
+    if(cbV.checked == true){
+        txV.style.visibility = "visible";
+    }else{
+        txV.style.visibility = "hidden";
+    }
+
+    if(cbA.checked == true){
+        txA.style.visibility = "visible";
+    }else{
+        txA.style.visibility = "hidden";
+    }
+
 
 }
