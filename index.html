@@ -10,6 +10,8 @@
   <script src="createHTMLElements.js" defer></script>
   <script src="typeChecks.js" defer></script>
 
+  <script src="satellite.js" defer></script>
+  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
 
 </head>
 <body>
@@ -23,5 +25,24 @@
   <input type="button" value="Hämta citat!"" id="getJokeButton"/>
 
   <p id="quoteDisplay"></p>
+  
+  <hr>
+
+  <div id="issContainer">
+    <div id="userInputs"></div>
+        <h1>ISS tracker</h1>
+        <div id="userCheckBox">
+            <input onclick="userCheckBox();" type="checkbox" id="issVel" name="speed"><label for="speed">Speed</label>
+            <input onclick="userCheckBox();" type="checkbox" id="issAlt" name="alt"><label for="alt">Altitude</label>
+        </div>
+        <button onclick="findButton();">Return to ISS</button>
+        
+    </div>
+    <div id="map" style="height: 250px; width:450px;"></div>
+    <h4 style="visibility: hidden;" id="velText"></h4>
+    <h4 style="visibility: hidden;" id="altText"></h4>
+
+</div>
+
 </body>
 </html>
