@@ -1,6 +1,6 @@
 Att göra:
 Implementera en MVP(minimum viable product).
-Sidan ska hostas på GitHub Pages --> Ligger på https://proggzmartin.github.io/Vitsfabriken/ 
+Sidan ska hostas på GitHub Pages --> Ligger på https://proggzmartin.github.io/Chuckiz/
 Ingen begränsning på vad appen ska göra eller lösa för problem.
 Måste finnas ett motiv och den måste använda sig av en eller flera web api:er.
 
