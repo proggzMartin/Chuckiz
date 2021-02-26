@@ -13,10 +13,22 @@
     </head>
 
     <body>
-        <h1>ISS tracker</h1>
-        <button onclick="findButton();">Return to ISS</button>
-         <div id="map" style="height: 250px; width:450px;"></div>
-         
+        
+        <div id="issContainer">
+            <div id="userInputs"></div>
+                <h1>ISS tracker</h1>
+                <div id="userCheckBox">
+                    <input onclick="userCheckBox();" type="checkbox" id="issVel" name="speed"><label for="speed">Speed</label>
+                    <input onclick="userCheckBox();" type="checkbox" id="issAlt" name="alt"><label for="alt">Altitude</label>
+                </div>
+                <button onclick="findButton();">Return to ISS</button>
+                
+            </div>
+            <div id="map" style="height: 250px; width:450px;"></div>
+            <h4 style="visibility: hidden;" id="veloText">Velocity: 45600 km/h</h4>
+            <h4 style="visibility: hidden;" id="altText">Altitude: 45600 KM</h4>
+
+        </div>
 
 
 

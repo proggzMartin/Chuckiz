@@ -7,7 +7,7 @@ Todo: Fixa Kommentarer & rensa i koden
 
 window.onload = (event) => {
     mapHandler();
-    setInterval(mapHandler, 5000);
+    setInterval(mapHandler, 3000);
 }
 
 //Skapar kartan & en lista med lager (layers)
@@ -32,15 +32,19 @@ getCord().then(res => {
 async function getCord() {
     let lat = null;
     let lon = null;
+    let alt = null;
+    let vel = null;
     let response = await fetch("https://api.wheretheiss.at/v1/satellites/25544").catch(error => console.error(error));
     let json = await response.json();
 
     if(json["status"] != 404){
         lat = json["latitude"]
         lon = json["longitude"]
+        alt = json["altitude"]
+        vel = json["velocity"]
     }
 
-    return {"lat":lat, "lon":lon}
+    return {"lat":lat, "lon":lon, "alt":alt, "vel":vel}
 }
 
 //Kalla på funktionen getCords och skicka de vidare till updateMap
@@ -99,4 +103,31 @@ function updateMap(lon, lat){
 
     //Fäster ikonen på kartan 
     map.addLayer(iconLayer)
+}
+
+//User Inputs
+function userCheckBox(){
+    let cbV = document.getElementById("issVel");
+    let cbA = document.getElementById("issAlt");
+    let txV = document.getElementById("veloText");
+    let txA = document.getElementById("altText");
+    
+    getCord().then(res => {
+        let alt = res["alt"];
+        let vel = res["vel"];
+        if(cbV.checked == true){
+            txV.style.visibility = "visible";
+            txV.innerText = Math.round(vel *100)/100 + " km/h"
+        }else{
+            txV.style.visibility = "hidden";
+        }
+    
+        if(cbA.checked == true){
+            txA.style.visibility = "visible";
+            txA.innerText = Math.round(alt *100)/100 + " KM"
+        }else{
+            txA.style.visibility = "hidden";
+        }
+    });
+
 }
