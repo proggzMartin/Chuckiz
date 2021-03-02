@@ -22,7 +22,7 @@ function selectRandomChuckMeme() {
 
 //Posts to imgFlip-api to create a chucknorris-meme.
 //Returns the URL to the created meme.
-async function postChuckImage(topText, bottomText) {
+async function postAndGetChuckImage(topText, bottomText) {
   if(!topText || !bottomText)
     return null;
 
@@ -64,4 +64,4 @@ async function getImages() {
   });
 }
 
-export {getImages as getImgFlipImages, postChuckImage as default};
+export {getImages as getImgFlipImages, postAndGetChuckImage as default};

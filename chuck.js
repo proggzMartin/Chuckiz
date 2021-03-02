@@ -3,7 +3,7 @@
 
 'use strict';
 
-import postChuckImage from './imgflip.js';
+import postAndGetChuckImage from './imgFlip.js';
 import createInputObject from './createHTMLElements.js';
 import isString from './typeChecks.js';
 
@@ -86,7 +86,7 @@ let chuck = (function() {
             let splittedJoke = splitStringInto2Parts(joke);
             //try set and get image. If problem arises, skip the image and publish the joke only.
             try {
-              let chuckImageURL = await postChuckImage(splittedJoke[0], splittedJoke[1]);
+              let chuckImageURL = await postAndGetChuckImage(splittedJoke[0], splittedJoke[1]);
               chuckImage.src = chuckImageURL;
 
             } catch {
@@ -146,7 +146,6 @@ let chuck = (function() {
 chuck.getCategories();
 
 getJokeButton.onclick = chuck.createChuckMeme;
-
 
 
 
