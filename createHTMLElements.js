@@ -8,7 +8,7 @@ const availableInputTypes = ['button', 'checkbox', 'radio'];
 
 //If type = 'button', a result-object containing a single input-object is returned which can be inserted into the DOM.
 //If type = 'checkbox' or 'radio', result-object contains an input-object and a löabel-object. The label has the 'value'-parameter as text.
-let createInputObject = function(type, value) {
+function createInputObject(type, value) {
 
   if( !(typeof type === 'string')) {
     console.error(`${arguments.callee.name}() --> Input parameter 'type' was not of type 'string'.`);
@@ -45,3 +45,6 @@ let createInputObject = function(type, value) {
 
   return result;
 }
+
+
+export {createInputObject as default};

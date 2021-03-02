@@ -3,6 +3,11 @@
 
 'use strict';
 
+import postChuckImage from './imgflip.js';
+import createInputObject from './createHTMLElements.js';
+import isString from './typeChecks.js';
+
+
 let getJokeButton = document.getElementById("getJokeButton");
 
 let quoteDisplay = document.getElementById("quoteDisplay");
@@ -14,8 +19,30 @@ let selectedCategory = ""; //used is API-call to chuck-site.
 
 const apiBase = 'https://api.chucknorris.io/';
 
+let chuckImage = document.getElementById("chuckImage");
 
+
+
+//Splits an input string into 2 parts.
+//(used for meme top and bottom).
+function splitStringInto2Parts(str) {
+  if(isString(str)) {
+    var wholeArr = str.split(' ');
+    var part1 = wholeArr.slice(0, wholeArr.length/2);
+    var part2 = wholeArr.slice(wholeArr.length/2, wholeArr.length);
+
+    var str1 = part1.join(' ');
+    var str2 = part2.join(' ');
+
+    return [str1, str2];
+  } else
+    throw Error("input wasn't a string");
+}
+
+
+//
 let setSelectedCategoryDisplay = function(category) {
+  //input must be string, otherwise post error and reset selectedCategory-data.
   if(!isString(category))
   {
     console.error(`${arguments.callee.name}() --> Input parameter 'category' was not of type 'string'.`);
@@ -27,115 +54,81 @@ let setSelectedCategoryDisplay = function(category) {
   selectedCategory = category;
 }
 
-//======================================================
-//======================================================
-//TESTCODE
-let chuckImage = document.getElementById("chuckImage");
-
-const apiBase2 = 'https://api.imgflip.com/get_memes';
-
-async function getImage() {
-  console.log("inuti bajs");
-
-  const resp = await fetch(apiBase2, 
-    {
-      method: "GET"
-    }).then(r => {
-      console.log(r);
-      r.json().then(p => {
-        console.log(p);
-        const memes = p.data.memes
-
-        if(memes[0].url)
-        {
-          console.log(memes[0].url)
-          chuckImage.src=memes[1].url;
-        }
-
-      });
-      // chuckImage.src = r.
-    });
-}
-
-getImage();
-
-
-// const xhttp3 = new XMLHttpRequest();
-// const apiBase3 = 'https://api.imgflip.com/caption_image';
-
-// xhttp3.open("POST", 
-//             apiBase2, 
-//             true,
-//             );
-
-// xhttp3.onreadystatechange = function () {
-//   let response = JSON.parse(xhttp3.response);
-//   console.log(response);
-// };
-
-// xhttp3.send();
-//======================================================
-//======================================================
-
-
 let chuck = (function() {
 
-  const xhttp = new XMLHttpRequest();
+  const xhttp= new XMLHttpRequest();
   
   return {
     infoVisible: false,
 
-    getJoke: function() {
+    createChuckMeme: async function() {
       
       let appendCategory = "";
 
       //if a category is selected, then append it.
-      if(selectedCategory && typeof selectedCategory === 'string')
+      if(isString(selectedCategory))
         appendCategory = `?category=${selectedCategory}`
 
       xhttp.open("GET", 
               apiBase+`jokes/random`+appendCategory, 
               true);
 
-      xhttp.onreadystatechange = function () {
+      xhttp.onload = async function () {
 
         if (xhttp.readyState==4 && xhttp.status==200) {
           let response = JSON.parse(xhttp.response);
   
-          if(response && response.value && typeof response.value === 'string')
-            quoteDisplay.textContent = response.value;
+          //if everything is ok, continue to display.
+          if(response && isString(response.value)) {
+            let joke = response.value;
+
+            //split the joke into 2 parts and get an image.
+            let splittedJoke = splitStringInto2Parts(joke);
+            //try set and get image. If problem arises, skip the image and publish the joke only.
+            try {
+              let chuckImageURL = await postChuckImage(splittedJoke[0], splittedJoke[1]);
+              chuckImage.src = chuckImageURL;
+
+            } catch {
+              chuckImage.src="";
+              quoteDisplay.textContent = joke;
+            }
+          }
           else
-            quoteDisplay.textContent = 'Something went wrong when getting quote about Chuck norris.';
-        } else 
-            quoteDisplay.textContent = 'Something went wrong fetching the Chuck Norris-FACT.';
-        
+            quoteDisplay.textContent = 'Something went wrong when getting a joke about Chuck norris.';
+        } 
+        else 
+          quoteDisplay.textContent = 'Something went wrong fetching the Chuck Norris-FACT.';
       };
 
       xhttp.send();
 
     },
+
     getCategories: function() {
 
       xhttp.open("GET", 
                 apiBase+`jokes/categories`, 
                 true);
       
-      xhttp.onreadystatechange = function () {
+      xhttp.onload = function () {
         if (xhttp.readyState==4 && xhttp.status==200) {
           let response = JSON.parse(xhttp.response);
   
           if(response && typeof response === 'object')
           {
+            console.log("response below:");
+            console.log(response);
             (response).forEach(category => {
               //build the radiobutton-menu and insert them.
-              let inputObject = createInputObject('radio', category, );
+              let radioButton = createInputObject('radio', category, );
               
-              inputObject.input.addEventListener('change', function(event) {
-                setSelectedCategoryDisplay(inputObject.label.innerHTML);
+              radioButton.input.addEventListener('change', function(event) {
+                setSelectedCategoryDisplay(radioButton.label.innerHTML);
               });
               
-              categoriesDisplay.appendChild(inputObject.input);
-              categoriesDisplay.appendChild(inputObject.label);
+              categoriesDisplay.appendChild(radioButton.input);
+              categoriesDisplay.appendChild(radioButton.label);
 
             });
           }
@@ -152,4 +145,12 @@ let chuck = (function() {
 
 chuck.getCategories();
 
-getJokeButton.onclick = chuck.getJoke;
+getJokeButton.onclick = chuck.createChuckMeme;
+
+
+
+
+let setChuckImage = async () => {
+  let chuckImageURL = await postChuckImage("hej", "hopp");
+  chuckImage.src = chuckImageURL;
+}

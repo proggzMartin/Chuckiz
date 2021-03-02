@@ -1,7 +1,10 @@
 //V0.0.1 2021-02-21
 
-let isString = function(val) {
-  if(val === null || typeof val !== 'string') 
-    return false;
-  return true;
+function isString(val) {
+  if(val && typeof val === 'string') 
+    return true;
+  return false;
 }
+
+
+export {isString as default}; //default needs to be removed later.
