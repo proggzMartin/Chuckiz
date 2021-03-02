@@ -5,6 +5,19 @@
 }
 
 
+.siteDiv {
+  width: 40%;
+  /* display: inline-block; */
+  display: block ;
+
+  border: 3px solid white;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+
+
+
 #issContainer {
   text-align: center; 
   width: 450px; 
