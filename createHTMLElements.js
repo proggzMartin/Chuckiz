@@ -45,6 +45,3 @@ function createInputObject(type, value) {
 
   return result;
 }
-
-
-export {createInputObject as default};

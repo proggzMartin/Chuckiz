@@ -3,11 +3,6 @@
 
 'use strict';
 
-import postAndGetChuckImage from './imgFlip.js';
-import createInputObject from './createHTMLElements.js';
-import isString from './typeChecks.js';
-
-
 let getJokeButton = document.getElementById("getJokeButton");
 
 let quoteDisplay = document.getElementById("quoteDisplay");
