@@ -4,19 +4,24 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#headerTitle {
+  text-align:  center;
+}
 
+#chuckWrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 .siteDiv {
-  width: 40%;
-  /* display: inline-block; */
-  display: block ;
-
   border: 3px solid white;
   border-radius: 10px;
-  margin: 5px;
+  margin: 20px 5px;
   padding: 5px;
 }
 
-
+.pageDivider {
+  clear: both;
+}
 
 #issContainer {
   text-align: center; 
