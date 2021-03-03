@@ -21,8 +21,8 @@
   padding: 5px;
 }
 
-.pageDivider {
-  clear: both;
+#descriptionTitle {
+  text-align: center;
 }
 
 #issContainer {
