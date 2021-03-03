@@ -6,3 +6,4 @@ function isString(val) {
   return false;
 }
 
+export {isString as default};

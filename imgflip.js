@@ -63,3 +63,6 @@ async function getImages() {
     });
   });
 }
+
+
+export {getImages as getImgFlipImages, postAndGetChuckImage as default};
