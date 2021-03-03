@@ -3,7 +3,7 @@
 
 'use strict';
 
-import postAndGetChuckImage from './imgFlip.js';
+import postAndGetChuckImage from './imgflip.js';
 import createInputObject from './createHTMLElements.js';
 import isString from './typeChecks.js';
 
