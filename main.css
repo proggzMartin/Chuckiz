@@ -5,7 +5,9 @@
 }
 
 #headerTitle {
+  font-size: 170px;
   text-align:  center;
+  margin: 0px;
 }
 
 #chuckWrapper {
