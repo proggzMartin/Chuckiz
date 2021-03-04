@@ -51,8 +51,8 @@ let setSelectedCategoryDisplay = function(category) {
     selectedCategory = "";
     return;
   }
-  selectedCategoryDisplay.innerHTML = "Selected category: "+category;
   selectedCategory = category;
+  selectedCategoryDisplay.innerHTML = "Selected category: "+selectedCategory;
 }
 
 let chuck = (function() {
@@ -60,8 +60,6 @@ let chuck = (function() {
   const xhttp= new XMLHttpRequest();
   
   return {
-    infoVisible: false,
-
     createChuckMeme: async function() {
       
       let appendCategory = "";
@@ -122,7 +120,6 @@ let chuck = (function() {
             categoriesContainer.style.display="grid";
             categoriesContainer.style.gridTemplateColumns="auto auto auto";
 
-            let count = 0;
             (response).forEach(category => {
               //build the radiobutton-menu and insert them.
               let radioButton = createInputObject('radio', category, );
@@ -138,22 +135,13 @@ let chuck = (function() {
               gridItem.appendChild(radioButton.label);
               categoriesContainer.appendChild(gridItem);
 
-              // categoriesContainer.appendChild(radioButton.input);
-              // categoriesContainer.appendChild(radioButton.label);
-
-              // count++;
-              // if(count%3 == 0) {
-              //   console.log("nu");
-              //   categoriesContainer.appendChild(
-              //     document.createElement("br")
-              //   );
-              // }
-
             });
           }
             
-          else
+          else {
+            categoriesContainer.style.display="block";
             categoriesContainer.textContent = 'Something went wrong when getting the categories about Chuck norris.';
+          }
         } 
       };
 
@@ -166,9 +154,3 @@ chuck.getCategories();
 
 getJokeButton.onclick = chuck.createChuckMeme;
 
-
-
-let setChuckImage = async () => {
-  let chuckImageURL = await postChuckImage("hej", "hopp");
-  chuckImage.src = chuckImageURL;
-}
