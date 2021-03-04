@@ -17,16 +17,18 @@ function selectRandomChuckMeme() {
     let x = Math.floor(
       Math.random() * Object.keys(chuckTemplateIDs).length
     );
+    console.log("index: "+x)
     return chuckTemplateIDs[x];
 }
 
 //Posts to imgFlip-api to create a chucknorris-meme.
 //Returns the URL to the created meme.
 async function postAndGetChuckImage(topText, bottomText) {
-  if(!topText || !bottomText)
+  if(!topText && !bottomText)
     return null;
 
-  const url = await fetch(URL_ImgFlipPost+`?template_id=${selectRandomChuckMeme()}&text0=${topText}&text1=${bottomText}`+
+  const url = await fetch(URL_ImgFlipPost+`?template_id=${selectRandomChuckMeme()}`+
+                     `&text0=${topText}&text1=${bottomText}`+
                      `&username=${API_userName}&password=${API_password}`,
   {
     method: "POST"
