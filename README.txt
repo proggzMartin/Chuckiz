@@ -13,5 +13,5 @@ v3: Det är dags att finpolera, städa upp i CSS, se till att sidan inte krascha
 ================
 V1 - IDÉN MED SIDAN
 
-NOT FINISHED!!!!! :
-Vi tycker om att ha kul, och vitsar är king. Jobba med något som är roligt is the way to go, så denna site nyuttjar ett chucknorris-api för att hämta olika citat som man sedan kan välja bland kategorier kring vilket random skämt man vill hämta.
+Vi är 2st religiöst bevingade herrar (pun?(Sanning med stor modifikationsmöjlighet); med ett intresse för gudalikt ska man här kunna bevittna gudomliga ting skapade av människan emer eller mindre. Vi börjar med chuck Norris sen testade vi ISS för att ta 2 fantastiska ting, sen får vi se om vi hinner mer.
+Sidan ligger på https://proggzmartin.github.io/Chuckiz/
