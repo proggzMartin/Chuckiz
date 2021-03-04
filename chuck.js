@@ -11,8 +11,9 @@ import isString from './typeChecks.js';
 let getJokeButton = document.getElementById("getJokeButton");
 
 let quoteDisplay = document.getElementById("quoteDisplay");
-let categoriesDisplay = document.getElementById("categoriesDisplay");
+let categoriesContainer = document.getElementById("categoriesContainer");
 let selectedCategoryDisplay = document.getElementById("selectedCategoryDisplay");
+
 
 selectedCategoryDisplay.innerHTML = "<i>No category has been selected yet.</i>";
 let selectedCategory = ""; //used is API-call to chuck-site.
@@ -117,8 +118,11 @@ let chuck = (function() {
   
           if(response && typeof response === 'object')
           {
-            console.log("response below:");
-            console.log(response);
+            //Show category-related stuff only if successful load.
+            categoriesContainer.style.display="grid";
+            categoriesContainer.style.gridTemplateColumns="auto auto auto";
+
+            let count = 0;
             (response).forEach(category => {
               //build the radiobutton-menu and insert them.
               let radioButton = createInputObject('radio', category, );
@@ -126,15 +130,30 @@ let chuck = (function() {
               radioButton.input.addEventListener('change', function(event) {
                 setSelectedCategoryDisplay(radioButton.label.innerHTML);
               });
+
+              let gridItem = document.createElement("div");
+              gridItem.class="grid-item";
               
-              categoriesDisplay.appendChild(radioButton.input);
-              categoriesDisplay.appendChild(radioButton.label);
+              gridItem.appendChild(radioButton.input);
+              gridItem.appendChild(radioButton.label);
+              categoriesContainer.appendChild(gridItem);
+
+              // categoriesContainer.appendChild(radioButton.input);
+              // categoriesContainer.appendChild(radioButton.label);
+
+              // count++;
+              // if(count%3 == 0) {
+              //   console.log("nu");
+              //   categoriesContainer.appendChild(
+              //     document.createElement("br")
+              //   );
+              // }
 
             });
           }
             
           else
-            categoriesDisplay.textContent = 'Something went wrong when getting the categories about Chuck norris.';
+            categoriesContainer.textContent = 'Something went wrong when getting the categories about Chuck norris.';
         } 
       };
 

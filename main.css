@@ -6,14 +6,24 @@
 
 #headerTitle {
   font-size: 170px;
-  text-align:  center;
+  text-align: center;
   margin: 0px;
 }
 
-#chuckWrapper {
+#categoriesContainer {
+  display: none;
+  text-align: left;
+}
+
+#chuckContainer {
+  text-align: center;
+}
+
+#contentWrapper {
   display: grid;
   grid-template-columns: auto auto auto;
 }
+
 .siteDiv {
   border: 3px solid white;
   border-radius: 10px;
@@ -21,7 +31,7 @@
   padding: 5px;
 }
 
-#descriptionTitle {
+.descriptionTitle {
   text-align: center;
 }
 

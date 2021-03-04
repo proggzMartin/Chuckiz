@@ -23,9 +23,9 @@
 
   <hr class="pageDivider"/>
 
-  <div id="chuckWrapper">
+  <div id="contentWrapper">
     <div class="siteDiv">
-      <h3 id="descriptionTitle">How and why</h3>
+      <h3 class="descriptionTitle"  >How and why</h3>
   
       <p>LOOK AT GODLIKES AT YOUR CONVENIENCE. The purpose of this page is to bring godlikeness closer to the user, to offer the user a 
         collection of godlikeness only a few clicks away. Over time, a larger variety of godlikeness will be
@@ -37,20 +37,25 @@
       </p>
     </div>
     
-    <div class="siteDiv">
+    <div class="siteDiv" id="chuckContainer">
       <div id="categoriesDisplay">    
+        <h3 class="descriptionTitle" id="categoryTitle">Choose a category</h3>
+        <div id="categoriesContainer"></div>
       </div>    
     
       <p id="selectedCategoryDisplay"></p>
-    
+      
+      <input type="button" value="Get a Chuck Norris - Meme!" id="getJokeButton"/>   
       <p id="quoteDisplay"></p>
+
+      <br/>
+      <br/>
+
       <div id="chuckImageDisplay">
         <img id="chuckImage"/>
       </div>
     
-      <br/>
-      <br/>
-      <input type="button" value="Get a Chuck Norris - Meme!" id="getJokeButton"/>   
+      
     </div>
 
     <div id="issContainer" class="siteDiv">
@@ -74,5 +79,17 @@
   </div>
 
   <hr/>
+<!-- testgrid -->
+  <div style="display: grid; grid-template-columns: auto auto auto;">
+    <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div>
+  </div>
 </body>
 </html>
